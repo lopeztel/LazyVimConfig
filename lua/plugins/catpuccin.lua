@@ -1,6 +1,6 @@
 return {
   "catppuccin/nvim",
-  lazy = true,
+  lazy = false, --otherwise theme doesn't show in telescope
   name = "catppuccin",
   opts = {
     integrations = {
