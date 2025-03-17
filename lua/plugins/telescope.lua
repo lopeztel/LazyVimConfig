@@ -1,5 +1,6 @@
 return {
   "nvim-telescope/telescope.nvim",
+  enabled = false,
   keys = {
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files (root dir)" },
   },
