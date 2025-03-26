@@ -26,3 +26,11 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.ditamap",
   command = "set filetype=xml",
 })
+
+-- Disable autoformatting per buffer
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "c", "h", "cc", "hpp", "cpp" },
+  callback = function()
+    vim.b.autoformat = false
+  end,
+})
