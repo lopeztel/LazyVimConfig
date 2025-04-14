@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 -- Disable line numbers for orgmode
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "org",
+  pattern = { "org", "rst", "md" },
   callback = function()
     vim.wo.number = false
     vim.wo.relativenumber = false
