@@ -33,3 +33,18 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spelllang = { "en_us" } -- You can change to your preferred language
   end,
 })
+
+--Floating diagnostics
+-- Show diagnostics in a floating window on CursorHold
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    vim.diagnostic.open_float(nil, {
+      focusable = false,
+      close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+      border = "rounded",
+      source = "always",
+      prefix = "",
+      scope = "cursor",
+    })
+  end,
+})
