@@ -16,19 +16,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
--- Disable line numbers for some files
+-- Disable line numbers, and enable spellcheck for some files
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "org", "rst", "md" },
   callback = function()
     vim.wo.number = false
     vim.wo.relativenumber = false
-  end,
-})
-
--- Enable spelling for some files
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "org", "rst", "md" },
-  callback = function()
     vim.opt_local.spell = true
     vim.opt_local.spelllang = { "en_us" } -- You can change to your preferred language
   end,
