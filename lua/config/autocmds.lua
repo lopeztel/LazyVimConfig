@@ -24,6 +24,10 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.wo.relativenumber = false
     vim.opt_local.spell = true
     vim.opt_local.spelllang = { "en_us" } -- You can change to your preferred language
+
+    -- Attach harper_ls
+    -- local lspconfig = require("lspconfig")
+    -- lspconfig.harper_ls.setup({})
   end,
 })
 
