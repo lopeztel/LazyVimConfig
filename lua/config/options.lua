@@ -7,3 +7,10 @@ vim.opt.mouse = ""
 
 -- Cursor hold time
 vim.o.updatetime = 200
+
+-- -- Add filetype
+-- vim.filetype.add({
+--   extension = {
+--     rst = "rst", -- maps .rst files to "rst" filetype
+--   },
+-- })

@@ -4,14 +4,14 @@
 
 return {
   require("lspconfig").harper_ls.setup({
-    on_attach = function(client, bufnr)
-      -- local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
-      local filetype = vim.bo[bufnr].filetype
-      if filetype == "rst" or filetype == "txt" or filetype == "org" then
-        client.resolved_capabilities.document_formatting = true
-        client.resolved_capabilities.document_range_formatting = true
-      end
-    end,
+    -- on_attach = function(client, bufnr)
+    -- local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
+    -- local filetype = vim.bo[bufnr].filetype
+    -- if filetype == "rst" or filetype == "txt" or filetype == "org" then
+    -- client.resolved_capabilities.document_formatting = true
+    -- client.resolved_capabilities.document_range_formatting = true
+    -- end
+    -- end,
     filetypes = {
       --   "c",
       --   "cpp",
@@ -37,7 +37,7 @@ return {
       --   "php",
       --   "dart",
       "rst",
-      "txt",
+      "text",
       "org",
     },
     settings = {

@@ -24,12 +24,14 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.wo.relativenumber = false
     vim.opt_local.spell = true
     vim.opt_local.spelllang = { "en_us" } -- You can change to your preferred language
-
-    -- Attach harper_ls
-    -- local lspconfig = require("lspconfig")
-    -- lspconfig.harper_ls.setup({})
   end,
 })
+
+-- Deal with rst files as text because harper_ls doesn't support rst
+-- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+--   pattern = { "*.rst" },
+--   command = "set filetype=text",
+-- })
 
 --Floating diagnostics
 -- Show diagnostics in a floating window on CursorHold
