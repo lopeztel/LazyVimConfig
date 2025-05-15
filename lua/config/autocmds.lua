@@ -35,15 +35,27 @@ vim.api.nvim_create_autocmd("FileType", {
 
 --Floating diagnostics
 -- Show diagnostics in a floating window on CursorHold
-vim.api.nvim_create_autocmd("CursorHold", {
+-- vim.api.nvim_create_autocmd("CursorHold", {
+--   callback = function()
+--     -- vim.diagnostic.open_float(nil, {
+--     --   focusable = false,
+--     --   close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+--     --   border = "rounded",
+--     --   source = "always",
+--     --   prefix = "",
+--     --   scope = "cursor",
+--     -- })
+--   end,
+-- })
+
+-- Less annoying Diagnostics and lsp things
+vim.api.nvim_create_autocmd("BufNew", {
   callback = function()
-    vim.diagnostic.open_float(nil, {
-      focusable = false,
-      close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-      border = "rounded",
-      source = "always",
-      prefix = "",
-      scope = "cursor",
+    vim.diagnostic.config({
+      virtual_text = false,
+      virtual_lines = true,
     })
+
+    vim.lsp.inlay_hint.enable(false)
   end,
 })
