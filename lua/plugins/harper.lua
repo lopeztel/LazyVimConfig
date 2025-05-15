@@ -3,7 +3,7 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#harper_ls
 
 return {
-  require("lspconfig").harper_ls.setup({
+  vim.lsp.config("harper_ls", {
     -- on_attach = function(client, bufnr)
     -- local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
     -- local filetype = vim.bo[bufnr].filetype
@@ -97,4 +97,5 @@ return {
       },
     },
   }),
+  vim.lsp.enable("harper_ls"),
 }
