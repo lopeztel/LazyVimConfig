@@ -9,12 +9,12 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 -- Disable autoformatting per buffer
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "c", "h", "cc", "hpp", "cpp" },
-  callback = function()
-    vim.b.autoformat = false
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "FileType" }, {
+--   pattern = { "c", "h", "cc", "hpp", "cpp" },
+--   callback = function()
+--     vim.b.autoformat = false
+--   end,
+-- })
 
 -- Disable line numbers, and enable spellcheck for some files
 vim.api.nvim_create_autocmd("FileType", {
