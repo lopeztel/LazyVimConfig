@@ -10,6 +10,7 @@ return {
       -- cpp = { "uncrustify", "clangformat" },
       cpp = { "uncrustify" },
       -- Add any other filetypes that you want to format with uncrustify
+      markdown = { "prettier" },
     },
     formatters = {
       uncrustify = {
@@ -28,9 +29,11 @@ return {
 
           -- Check if the config file exists in the current directory
           if vim.fn.filereadable(config_path) == 1 then
-            -- return { "-c", config_path, "-f", bufname, "-o", bufname, "--no-backup" }
-            return { "-c", config_path, "-f", bufname }
-            -- return { "-c", config_path, "-l", "c" }
+            -- Read from stdin (conform pipes the buffer in) and write to stdout.
+            -- Do NOT pass "-f bufname": that makes uncrustify read the on-disk
+            -- file instead of the buffer, so unsaved edits get reverted on :w.
+            -- "-l c" gives the language hint that "-f" would otherwise supply.
+            return { "-c", config_path, "-l", "c" }
           else
             return nil
           end
@@ -48,6 +51,14 @@ return {
       },
       clangformat = {
         command = "clang-format",
+      },
+      prettier = {
+        prepend_args = {
+          "--prose-wrap",
+          "always",
+          "--print-width",
+          "80",
+        },
       },
     },
   },
