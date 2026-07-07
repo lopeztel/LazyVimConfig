@@ -2,6 +2,22 @@
 -- https://writewithharper.com/docs/integrations/neovim
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#harper_ls
 
+-- Skip attaching harper_ls to log-style files (log.txt, Log.txt, gdblog.txt, screenlog0, ...)
+local skip_patterns = {
+  "log%.txt$",
+  "screenlog%.?%d*$",
+}
+
+local function is_log_file(bufnr)
+  local name = vim.api.nvim_buf_get_name(bufnr):lower()
+  for _, pat in ipairs(skip_patterns) do
+    if name:match(pat) then
+      return true
+    end
+  end
+  return false
+end
+
 return {
   vim.lsp.config("harper_ls", {
     -- on_attach = function(client, bufnr)
@@ -12,6 +28,13 @@ return {
     -- client.resolved_capabilities.document_range_formatting = true
     -- end
     -- end,
+    on_attach = function(client, bufnr)
+      if is_log_file(bufnr) then
+        vim.schedule(function()
+          vim.lsp.buf_detach_client(bufnr, client.id)
+        end)
+      end
+    end,
     filetypes = {
       --   "c",
       --   "cpp",
