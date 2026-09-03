@@ -22,4 +22,15 @@ return {
       },
     },
   },
+
+  config = function(_, opts)
+    require("toggleterm").setup(opts)
+
+    -- Leave terminal-insert mode without using Ctrl-\
+    vim.keymap.set("t", "<C-o>", [[<C-\><C-n>]], {
+      noremap = true,
+      silent = true,
+      desc = "Terminal normal mode",
+    })
+  end,
 }
