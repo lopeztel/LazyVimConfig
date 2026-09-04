@@ -5,13 +5,14 @@ return {
   },
   opts = { -- you can just pass {}, defaults below
     events = {
-      render_buffer = { "InsertLeave", "BufWinEnter", "TextChanged" },
+      -- render_buffer = { "InsertLeave", "BufWinEnter", "TextChanged" },
+      render_buffer = {},
       clear_buffer = { "BufLeave" },
     },
     renderer_options = {
       mermaid = {
         -- background = nil, -- nil | "transparent" | "white" | "#hex"
-        background = "transparent",
+        background = "white",
         -- theme = nil, -- nil | "default" | "dark" | "forest" | "neutral"
         theme = "default",
         scale = 1, -- nil | 1 (default) | 2  | 3 | ...
@@ -38,6 +39,18 @@ return {
         theme = nil, -- nil | "light" | "dark" | custom theme string
         cli_args = nil, -- nil | { "-p" } | { "-c", "config.plt" } | ...
       },
+    },
+  },
+  keys = {
+    {
+      "<leader>D", -- or any key you prefer
+      function()
+        require("diagram").show_diagram_hover()
+      end,
+      mode = "n",
+      -- ft = { "markdown", "norg" }, -- Only in these filetypes
+      ft = { "markdown" }, -- Only in these filetypes
+      desc = "Show diagram in new tab",
     },
   },
 }
